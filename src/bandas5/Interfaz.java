@@ -218,7 +218,7 @@ public class Interfaz extends javax.swing.JFrame {
                 BaseDatos objeto2 = new BaseDatos();
                 boolean aux = true;
                 boolean aux2 = true;
-                //Guardamos el ingreso del jTextField en la bariable auxBtnIngreso y se lo asignamos a metodo setBanda
+                //Guardamos el ingreso del jTextField en la variable auxBtnIngreso y se lo asignamos a metodo setBanda
                 String auxBtnIngreso = ingresoBanda.getText();
                 objeto2.setBanda(auxBtnIngreso);
 
