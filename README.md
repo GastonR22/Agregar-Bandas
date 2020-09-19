@@ -1,5 +1,5 @@
 # AgregarBandas
-Proyecto funcional que agrega, muestra y genera al azar bandas musicales desde una base de datos sqlite
+Proyecto que agrega, muestra y genera al azar bandas musicales desde una base de datos sqlite
 
 Probado y desarrollado en netBeans IDE 8.2
 
