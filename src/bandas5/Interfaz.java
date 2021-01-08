@@ -64,6 +64,9 @@ public class Interfaz extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         mostrarTabla = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        ingresoID = new javax.swing.JTextField();
+        btnEliminarRegistro = new javax.swing.JButton();
         jLabelFondo = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
@@ -81,20 +84,20 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnBandaAzar);
-        btnBandaAzar.setBounds(810, 490, 205, 23);
+        btnBandaAzar.setBounds(810, 380, 205, 23);
 
         mostrarBandaAzar.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         mostrarBandaAzar.setForeground(new java.awt.Color(255, 255, 255));
         mostrarBandaAzar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jPanel1.add(mostrarBandaAzar);
-        mostrarBandaAzar.setBounds(760, 430, 310, 30);
+        mostrarBandaAzar.setBounds(760, 320, 310, 30);
 
         jLabel1.setFont(new java.awt.Font("Gabriola", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Agregador de bandas");
+        jLabel1.setText("Registros musicales");
         jLabel1.setToolTipText("");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(520, 10, 238, 62);
+        jLabel1.setBounds(520, 10, 214, 62);
 
         jLabel2.setFont(new java.awt.Font("Gabriola", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -104,6 +107,8 @@ public class Interfaz extends javax.swing.JFrame {
 
         ingresoBanda.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         ingresoBanda.setForeground(new java.awt.Color(255, 255, 255));
+        ingresoBanda.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        ingresoBanda.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         ingresoBanda.setOpaque(false);
         ingresoBanda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,6 +160,7 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
         mostrarTabla.setOpaque(false);
+        mostrarTabla.setRowHeight(22);
         mostrarTabla.setSelectionBackground(new java.awt.Color(0, 204, 204));
         jScrollPane2.setViewportView(mostrarTabla);
 
@@ -165,11 +171,38 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Banda al azar");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(860, 390, 110, 20);
+        jLabel4.setBounds(860, 280, 110, 20);
+
+        jLabel5.setFont(new java.awt.Font("Gabriola", 0, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Eliminar Banda por ID");
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(820, 470, 200, 30);
+
+        ingresoID.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        ingresoID.setForeground(new java.awt.Color(255, 255, 255));
+        ingresoID.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        ingresoID.setOpaque(false);
+        ingresoID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ingresoIDActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ingresoID);
+        ingresoID.setBounds(760, 510, 310, 30);
+
+        btnEliminarRegistro.setText("Eliminar Banda");
+        btnEliminarRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarRegistroActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEliminarRegistro);
+        btnEliminarRegistro.setBounds(810, 570, 210, 23);
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/vinyl_record.jpg"))); // NOI18N
         jPanel1.add(jLabelFondo);
-        jLabelFondo.setBounds(0, 0, 1200, 710);
+        jLabelFondo.setBounds(0, -10, 1200, 710);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -202,10 +235,6 @@ public class Interfaz extends javax.swing.JFrame {
          
     }//GEN-LAST:event_btnBandaAzarActionPerformed
 
-    private void ingresoBandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresoBandaActionPerformed
-
-    }//GEN-LAST:event_ingresoBandaActionPerformed
-
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         //Boton para agregar una banda a la base de datos
 
@@ -219,7 +248,7 @@ public class Interfaz extends javax.swing.JFrame {
                 boolean aux = true;
                 boolean aux2 = true;
                 //Guardamos el ingreso del jTextField en la variable auxBtnIngreso y se lo asignamos a metodo setBanda
-                String auxBtnIngreso = ingresoBanda.getText();
+                String auxBtnIngreso = ingresoBanda.getText().toLowerCase();
                 objeto2.setBanda(auxBtnIngreso);
 
                 Connection conexion = null;
@@ -264,6 +293,7 @@ public class Interfaz extends javax.swing.JFrame {
                     s.executeUpdate("INSERT INTO bandas_tabla (idBanda, nombreBanda) VALUES (NUll ,'" + objeto2.getBanda() + "')");
 
                     JOptionPane.showMessageDialog(null, "BANDA INGRESADA A LA BASE DE DATOS DE FORMA EXITOSA");
+                    btnVerBd.doClick();
 
                 }
                 //Limpiamos el campo de ingreso
@@ -321,6 +351,64 @@ public class Interfaz extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnVerBdActionPerformed
 
+    private void ingresoIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresoIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ingresoIDActionPerformed
+
+    private void btnEliminarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarRegistroActionPerformed
+
+        BaseDatos base = new BaseDatos();
+
+        if (ingresoID.getText().isEmpty()) {
+
+            JOptionPane.showMessageDialog(null, "El campo no puede ir vacio por favor intentelo nuevamente");
+
+        } else {
+            // 0= SI, 1= NO, 2= CANCEL
+            int confirmacion = JOptionPane.showConfirmDialog(null, "Esta seguro que deseas eliminar el registro?");
+            int idIngresado = Integer.parseInt(ingresoID.getText());
+            boolean aux = true;
+ 
+            if (confirmacion == 1 || confirmacion == 2) {
+                ingresoID.setText("");
+            } else {
+                base.verBaseDatos();
+                for (int i : base.getArrayInt()) {
+
+                    if (idIngresado == i) {
+
+                            try {
+                                base.eliminarRegistro(idIngresado);
+                                ingresoID.setText("");
+                                JOptionPane.showMessageDialog(null, "El registro fue eliminado correctamente");
+                                btnVerBd.doClick();
+                                aux = false;
+                            } catch (SQLException ex) {
+                                Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+
+                    }
+
+                }
+                if (aux == true) {
+                    JOptionPane.showMessageDialog(null, "El ID ingresado no existe en la base de datos");
+                    ingresoID.setText("");
+                }
+
+            }
+
+
+
+
+        }
+
+
+    }//GEN-LAST:event_btnEliminarRegistroActionPerformed
+
+    private void ingresoBandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresoBandaActionPerformed
+
+    }//GEN-LAST:event_ingresoBandaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -359,14 +447,17 @@ public class Interfaz extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBandaAzar;
+    private javax.swing.JButton btnEliminarRegistro;
     private javax.swing.JButton btnVerBd;
     private javax.swing.JTextField ingresoBanda;
+    private javax.swing.JTextField ingresoID;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelFondo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;

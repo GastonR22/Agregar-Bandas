@@ -1,6 +1,6 @@
 package bandas5;
 
-public class Bandas5 {
+public class Main {
 
     public static void main(String[] args) {
         Interfaz inter = new Interfaz();

@@ -93,7 +93,7 @@ public class BaseDatos {
 
             if (conexion != null) {
 
-                JOptionPane.showMessageDialog(null, "Conexion a la base de datos exitosa");
+                //JOptionPane.showMessageDialog(null, "Conexion a la base de datos exitosa");
 
                 //Asignamos el Statement y el ResultSet
                 Statement s = conexion.createStatement();
@@ -170,4 +170,35 @@ public class BaseDatos {
          }
     }
 
+    public void eliminarRegistro(int id) throws SQLException{
+    
+       Connection conexion = null;
+        try {
+            conexion = DriverManager.getConnection("jdbc:sqlite:bandasPrueba.db");
+
+            if (conexion != null) {
+                
+                           
+                Statement s = conexion.createStatement();
+                s.executeUpdate("DELETE FROM bandas_tabla WHERE idBanda = " + id);
+
+               
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error en la conexion a la base de datos");
+        }
+ 
+      
+        try {
+            //Cerramos la conexion a la base de datos
+            conexion.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    }
+    
+    
+    
 }
