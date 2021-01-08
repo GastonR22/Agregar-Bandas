@@ -389,6 +389,7 @@ public class Interfaz extends javax.swing.JFrame {
                                 Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
                             }
 
+                            
                         }
 
                     }
