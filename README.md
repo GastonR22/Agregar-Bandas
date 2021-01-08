@@ -7,6 +7,6 @@ Primer proyecto personal que busca facilitar el recordar bandas a la hora de esc
 
 Imagenes del proyecto funcionando
 
-![](Imagenes%20proyecto%20bandas/proyectoFuncional.png)
+![](Imagenes%20proyecto%20bandas/proyectoFuncional.jpg)
 
-![](Imagenes%20proyecto%20bandas/validacionBandaRepetida.png)
+![](Imagenes%20proyecto%20bandas/validacionBandaRepetida.jpg)
