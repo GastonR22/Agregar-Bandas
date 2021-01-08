@@ -6,7 +6,7 @@ public class Main {
         Interfaz inter = new Interfaz();
         //Hacemos visible la Interfaz grafica
         inter.setVisible(true);
-
+              
     }
 
 }

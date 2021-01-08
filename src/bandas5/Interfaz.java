@@ -364,18 +364,20 @@ public class Interfaz extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "El campo no puede ir vacio por favor intentelo nuevamente");
 
         } else {
-            // 0= SI, 1= NO, 2= CANCEL
-            int confirmacion = JOptionPane.showConfirmDialog(null, "Esta seguro que deseas eliminar el registro?");
-            int idIngresado = Integer.parseInt(ingresoID.getText());
-            boolean aux = true;
- 
-            if (confirmacion == 1 || confirmacion == 2) {
-                ingresoID.setText("");
-            } else {
-                base.verBaseDatos();
-                for (int i : base.getArrayInt()) {
+           
+            if (ingresoID.getText().matches("[0-9]*")) {
+                 // 0= SI, 1= NO, 2= CANCEL
+                int confirmacion = JOptionPane.showConfirmDialog(null, "Esta seguro que deseas eliminar el registro?");;
+                boolean aux = true;
+                int idIngresado = Integer.parseInt(ingresoID.getText());
 
-                    if (idIngresado == i) {
+                if (confirmacion == 1 || confirmacion == 2) {
+                    ingresoID.setText("");
+                } else {
+                    base.verBaseDatos();
+                    for (int i : base.getArrayInt()) {
+
+                        if (idIngresado == i) {
 
                             try {
                                 base.eliminarRegistro(idIngresado);
@@ -387,18 +389,20 @@ public class Interfaz extends javax.swing.JFrame {
                                 Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
                             }
 
+                        }
+
+                    }
+                    if (aux == true) {
+                        JOptionPane.showMessageDialog(null, "El ID ingresado no existe en la base de datos");
+                        ingresoID.setText("");
                     }
 
                 }
-                if (aux == true) {
-                    JOptionPane.showMessageDialog(null, "El ID ingresado no existe en la base de datos");
-                    ingresoID.setText("");
-                }
 
+            } else {
+                JOptionPane.showMessageDialog(null, "No se ha ingresado un dato numerico, por favor intentelo nuevamente");
+                ingresoID.setText("");
             }
-
-
-
 
         }
 
